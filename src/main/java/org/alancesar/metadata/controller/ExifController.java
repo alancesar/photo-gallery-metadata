@@ -22,7 +22,9 @@ public class ExifController {
 
     @GetMapping("{filename}")
     @ResponseBody
-    public Map<String, String> getExif(@PathVariable String filename, HttpServletResponse response) throws Exception {
+    public Map<String, Map<String, String>> getExif(@PathVariable String filename,
+                                                    HttpServletResponse response) throws Exception {
+
         final var entity = repository
                 .findByFilename(filename)
                 .orElseThrow(ChangeSetPersister.NotFoundException::new);

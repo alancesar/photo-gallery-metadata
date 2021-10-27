@@ -1,10 +1,8 @@
 package org.alancesar.metadata.messaging;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.minio.messages.Event;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.Map;
 
 public class Message implements Serializable {
@@ -12,12 +10,12 @@ public class Message implements Serializable {
     private String filename;
 
     @JsonProperty
-    private Map<String, String> exif;
+    private Map<String, Map<String, String>> exif;
 
     public Message() {
     }
 
-    public Message(String filename, Map<String, String> exif) {
+    public Message(String filename, Map<String, Map<String, String>> exif) {
         this.filename = filename;
         this.exif = exif;
     }
@@ -26,7 +24,7 @@ public class Message implements Serializable {
         return filename;
     }
 
-    public Map<String, String> getExif() {
+    public Map<String, Map<String, String>> getExif() {
         return exif;
     }
 }

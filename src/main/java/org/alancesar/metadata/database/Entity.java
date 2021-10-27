@@ -13,11 +13,11 @@ public class Entity {
     private String id;
     private String filename;
     private Metadata metadata;
-    private Map<String, String> exif;
+    private Map<String, Map<String, String>> exif;
 
     public Entity() {}
 
-    public Entity(String filename, Metadata metadata, Map<String, String> exif) {
+    public Entity(String filename, Metadata metadata, Map<String, Map<String, String>> exif) {
         this.filename = filename;
         this.metadata = metadata;
         this.exif = exif;
@@ -35,7 +35,7 @@ public class Entity {
         return metadata;
     }
 
-    public Map<String, String> getExif() {
+    public Map<String, Map<String, String>> getExif() {
         return exif;
     }
 }

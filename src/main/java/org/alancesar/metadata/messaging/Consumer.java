@@ -3,7 +3,6 @@ package org.alancesar.metadata.messaging;
 import org.alancesar.metadata.database.Entity;
 import org.alancesar.metadata.database.Repository;
 import org.alancesar.metadata.exif.ExifExtractor;
-import org.alancesar.metadata.metadata.Metadata;
 import org.alancesar.metadata.storage.Storage;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
