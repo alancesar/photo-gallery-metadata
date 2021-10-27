@@ -1,0 +1,14 @@
+server:
+  port: ${PORT:8081}
+  servlet:
+    context-path: /api
+
+minio:
+  endpoint: ${MINIO_ENDPOINT:http://localhost:9000}
+  root-user: ${MINIO_ROOT_USER:photo-gallery}
+  root-password: ${MINIO_ROOT_PASSWORD:photo-gallery}
+  bucket-name: ${PHOTOS_BUCKET:photos}
+rabbitmq:
+  queue-name: ${QUEUE_NAME:metadata}
+  bucket-exchange-name: ${BUCKET_EXCHANGE_NAME:bucket-notifications}
+  worker-exchange-name: ${WORKER_EXCHANGE_NAME:worker-notifications}

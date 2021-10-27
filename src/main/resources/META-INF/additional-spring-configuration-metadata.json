@@ -1,0 +1,39 @@
+{
+  "properties": [
+    {
+      "name": "minio.endpoint",
+      "type": "java.lang.String",
+      "description": "Endpoint of the Minio server."
+    },
+    {
+      "name": "minio.root-user",
+      "type": "java.lang.String",
+      "description": "Root user of the Minio server."
+    },
+    {
+      "name": "minio.root-password",
+      "type": "java.lang.String",
+      "description": "Root password of the Minio server."
+    },
+    {
+      "name": "minio.bucket-name",
+      "type": "java.lang.String",
+      "description": "Photo's bucket name of the Minio server."
+    },
+    {
+      "name": "rabbitmq.queue-name",
+      "type": "java.lang.String",
+      "description": "Name of the metadata queue."
+    },
+    {
+      "name": "rabbitmq.bucket-exchange-name",
+      "type": "java.lang.String",
+      "description": "Exchange name for bucket notifications."
+    },
+    {
+      "name": "rabbitmq.worker-exchange-name",
+      "type": "java.lang.String",
+      "description": "Exchange name for worker notifications."
+    }
+  ]
+}
