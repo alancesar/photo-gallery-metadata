@@ -3,23 +3,23 @@ package org.alancesar.metadata.metadata;
 import java.util.Map;
 
 public class Metadata {
-    private final String contentType;
-    private final String etag;
+    private final Header header;
+    private final Map<String, Map<String, String>> exif;
 
-    private Metadata(String contentType, String etag) {
-        this.contentType = contentType;
-        this.etag = etag;
-    }
-
-    public static Metadata from(Map<String, String> headers) {
-        return new Metadata(headers.get(Headers.CONTENT_TYPE.getKey()), headers.get(Headers.ETAG.getKey()));
+    public Metadata(Header header, Map<String, Map<String, String>> exif) {
+        this.header = header;
+        this.exif = exif;
     }
 
     public String getContentType() {
-        return contentType;
+        return header.getContentType();
     }
 
     public String getEtag() {
-        return etag;
+        return header.getContentType();
+    }
+
+    public Map<String, Map<String, String>> getExif() {
+        return exif;
     }
 }

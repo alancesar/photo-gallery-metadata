@@ -29,8 +29,7 @@ public class ExifController {
                 .findByFilename(filename)
                 .orElseThrow(ChangeSetPersister.NotFoundException::new);
 
-        final var metadata = entity.getMetadata();
-        response.addHeader(ETAG, metadata.getEtag());
+        response.addHeader(ETAG, entity.getEtag());
         return entity.getExif();
     }
 

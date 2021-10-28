@@ -1,5 +1,6 @@
 package org.alancesar.metadata.database;
 
+import org.alancesar.metadata.metadata.Header;
 import org.alancesar.metadata.metadata.Metadata;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -13,14 +14,13 @@ public class Entity {
     private String id;
     private String filename;
     private Metadata metadata;
-    private Map<String, Map<String, String>> exif;
 
-    public Entity() {}
+    public Entity() {
+    }
 
-    public Entity(String filename, Metadata metadata, Map<String, Map<String, String>> exif) {
+    public Entity(String filename, Metadata metadata) {
         this.filename = filename;
         this.metadata = metadata;
-        this.exif = exif;
     }
 
     public String getId() {
@@ -31,11 +31,15 @@ public class Entity {
         return filename;
     }
 
-    public Metadata getMetadata() {
-        return metadata;
+    public String getEtag() {
+        return metadata.getEtag();
+    }
+
+    public String getContentType() {
+        return metadata.getContentType();
     }
 
     public Map<String, Map<String, String>> getExif() {
-        return exif;
+        return metadata.getExif();
     }
 }

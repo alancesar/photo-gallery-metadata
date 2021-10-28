@@ -3,6 +3,7 @@ package org.alancesar.metadata.messaging;
 import org.alancesar.metadata.database.Entity;
 import org.alancesar.metadata.database.Repository;
 import org.alancesar.metadata.exif.ExifExtractor;
+import org.alancesar.metadata.metadata.Metadata;
 import org.alancesar.metadata.storage.Storage;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
@@ -37,9 +38,10 @@ public class Consumer {
             final var fos = new FileOutputStream(file.toFile());
             item.getInputStream().transferTo(fos);
 
-            final var metadata = item.getMetadata();
+            final var header = item.getHeader();
             final var exif = extractor.extract(file.toFile());
-            final var entity = new Entity(filename, metadata, exif);
+            final var metadata = new Metadata(header, exif);
+            final var entity = new Entity(filename, metadata);
             repository.save(entity);
             producer.produce(filename, exif);
         } catch (Exception e) {

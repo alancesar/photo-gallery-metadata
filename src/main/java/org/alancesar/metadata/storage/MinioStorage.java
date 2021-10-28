@@ -3,8 +3,8 @@ package org.alancesar.metadata.storage;
 import io.minio.GetObjectArgs;
 import io.minio.GetObjectResponse;
 import io.minio.MinioClient;
+import org.alancesar.metadata.metadata.Header;
 import org.alancesar.metadata.metadata.Headers;
-import org.alancesar.metadata.metadata.Metadata;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -34,18 +34,16 @@ public class MinioStorage implements Storage {
                 .build();
 
         var object = client.getObject(args);
-        var headers = getHeaders(object);
-        return new Item(object, headers);
+        var header = getHeader(object);
+        return new Item(object, header);
     }
 
-    private Metadata getHeaders(GetObjectResponse object) {
-        var headers = object.headers()
+    private Header getHeader(GetObjectResponse object) {
+        return Header.from(object.headers()
                 .toMultimap()
                 .entrySet()
                 .stream()
                 .filter(entry -> HEADERS.contains(entry.getKey()))
-                .collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue().stream().findAny().orElse("")));
-
-        return Metadata.from(headers);
+                .collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue().stream().findAny().orElse(""))));
     }
 }

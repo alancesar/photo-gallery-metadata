@@ -1,23 +1,24 @@
 package org.alancesar.metadata.storage;
 
+import org.alancesar.metadata.metadata.Header;
 import org.alancesar.metadata.metadata.Metadata;
 
 import java.io.InputStream;
 
 public class Item {
     private final InputStream inputStream;
-    private final Metadata metadata;
+    private final Header header;
 
-    public Item(InputStream is, Metadata metadata) {
+    public Item(InputStream is, Header header) {
         this.inputStream = is;
-        this.metadata = metadata;
+        this.header = header;
     }
 
     public InputStream getInputStream() {
         return inputStream;
     }
 
-    public Metadata getMetadata() {
-        return metadata;
+    public Header getHeader() {
+        return header;
     }
 }
