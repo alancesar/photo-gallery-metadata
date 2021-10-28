@@ -21,7 +21,7 @@ public class Producer {
     }
 
     public void produce(String filename, Map<String, Map<String, String>> exif) {
-        rabbitTemplate.convertAndSend(workerExchangeName, "", new Message(filename, exif), m -> {
+        rabbitTemplate.convertAndSend(workerExchangeName, "", new ExifMessage(filename, exif), m -> {
             m.getMessageProperties().getHeaders().put(EVENT_TYPE_KEY, EVENT_TYPE);
             return m;
         });
