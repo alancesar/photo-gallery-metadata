@@ -11,10 +11,6 @@ public class Metadata {
         this.exif = exif;
     }
 
-    public String getContentType() {
-        return header.getContentType();
-    }
-
     public String getEtag() {
         return header.getContentType();
     }

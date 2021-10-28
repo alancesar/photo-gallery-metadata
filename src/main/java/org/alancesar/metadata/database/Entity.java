@@ -1,6 +1,5 @@
 package org.alancesar.metadata.database;
 
-import org.alancesar.metadata.metadata.Header;
 import org.alancesar.metadata.metadata.Metadata;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -33,10 +32,6 @@ public class Entity {
 
     public String getEtag() {
         return metadata.getEtag();
-    }
-
-    public String getContentType() {
-        return metadata.getContentType();
     }
 
     public Map<String, Map<String, String>> getExif() {

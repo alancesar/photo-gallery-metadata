@@ -1,7 +1,6 @@
 package org.alancesar.metadata.storage;
 
 import org.alancesar.metadata.metadata.Header;
-import org.alancesar.metadata.metadata.Metadata;
 
 import java.io.InputStream;
 
