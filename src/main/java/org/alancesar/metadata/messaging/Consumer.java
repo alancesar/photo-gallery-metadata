@@ -13,9 +13,10 @@ import java.nio.file.Files;
 
 @Component
 public class Consumer {
-    public static final long CHUNK_SIZE = 1024 * 128 - 1;
-    public static final String TEMP_PREFIX = "exif-";
-    public static final String TEMP_SUFFIX = ".tmp";
+    private static final long CHUNK_SIZE = 1024 * 128 - 1;
+    private static final String TEMP_PREFIX = "exif-";
+    private static final String TEMP_SUFFIX = ".tmp";
+    private static final String EXIF_PROPERTY = "exif";
 
     private final ExifExtractor extractor;
     private final Storage storage;
@@ -30,7 +31,7 @@ public class Consumer {
     }
 
     @RabbitListener(queues = "#{queue.name}")
-    public void consumer(Message message) {
+    public void consumer(IncomingMessage message) {
         try {
             final var filename = message.getFilename();
             final var item = storage.getChunk(filename, CHUNK_SIZE);
@@ -43,7 +44,7 @@ public class Consumer {
             final var metadata = new Metadata(header, exif);
             final var entity = new Entity(filename, metadata);
             repository.save(entity);
-            producer.produce(filename, exif);
+            producer.produce(new OutgoingMessage(filename, EXIF_PROPERTY, exif));
         } catch (Exception e) {
             e.printStackTrace();
         }

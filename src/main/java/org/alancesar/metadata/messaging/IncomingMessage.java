@@ -4,9 +4,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 
-public class Message implements Serializable {
+public class IncomingMessage implements Serializable {
     @JsonProperty("filename")
-    protected String filename;
+    private String filename;
 
     public String getFilename() {
         return filename;
